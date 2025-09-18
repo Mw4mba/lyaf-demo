@@ -45,7 +45,7 @@ const Hero: React.FC<HeroProps> = ({ handleFilterChange }) => {
               </span>
             </label>
           </div>
-          <div className="relative bottom-[-25] p-4 md:p-6 rounded-4xl shadow-xl/30 max-w-4xl mx-auto mt-4 text-slate-800 bg-white/90 backdrop-blur-sm">
+          <div className="relative bottom-0 p-4 md:p-6 rounded-4xl shadow-xl/30 max-w-4xl mx-auto mt-4 text-slate-800 bg-white/90 backdrop-blur-sm">
             {propertyCategory === 'Residential' ? (
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                 <div className="flex flex-col text-left">
