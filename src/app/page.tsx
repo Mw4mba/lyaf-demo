@@ -1,103 +1,110 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+import React, { useState, useEffect, useMemo } from 'react';
+import { Search } from 'lucide-react';
+import { CarouselSize } from './components/PropertyCarousel';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import FeaturedListings from './components/FeaturedListings';
+import AboutUs from './components/AboutUs';
+import Testimonials from './components/Testimonials';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+// --- MOCK DATA ---
+// In a real application, this would come from a CMS or API
+const allProperties = [
+    { id: 1, type: 'House', location: 'Sandton', beds: 4, baths: 3, parking: 2, price: 4500000, image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=800&auto=format&fit=crop' },
+    { id: 2, type: 'Apartment', location: 'Cape Town', beds: 2, baths: 2, parking: 1, price: 3200000, image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop' },
+    { id: 3, type: 'Townhouse', location: 'Pretoria', beds: 3, baths: 2, parking: 2, price: 2100000, image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop' },
+    { id: 4, type: 'House', location: 'Durban', beds: 5, baths: 4, parking: 3, price: 6800000, image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=800&auto=format&fit=crop' },
+    { id: 5, type: 'Apartment', location: 'Sandton', beds: 1, baths: 1, parking: 1, price: 1850000, image: 'https://images.unsplash.com/photo-1493809842344-ab5a42a16a9a?q=80&w=800&auto=format&fit=crop' },
+    { id: 6, type: 'House', location: 'Stellenbosch', beds: 3, baths: 2, parking: 2, price: 3950000, image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop' },
+    { id: 7, type: 'Apartment', location: 'Pretoria', beds: 2, baths: 1, parking: 1, price: 1300000, image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop' },
+    { id: 8, type: 'Townhouse', location: 'Cape Town', beds: 2, baths: 2, parking: 1, price: 2750000, image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=800&auto=format&fit=crop' },
+    { id: 9, type: 'House', location: 'Sandton', beds: 6, baths: 5, parking: 4, price: 12500000, image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=800&auto=format&fit=crop' },
+    { id: 10, type: 'Apartment', location: 'Durban', beds: 3, baths: 2, parking: 2, price: 2400000, image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop' },
+    { id: 11, type: 'House', location: 'Constantia', beds: 4, baths: 4, parking: 3, price: 8900000, image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop' },
+    { id: 12, type: 'Townhouse', location: 'Midrand', beds: 3, baths: 2, parking: 2, price: 1950000, image: 'https://images.unsplash.com/photo-1628744448845-51ae4a434468?q=80&w=800&auto=format&fit=crop' },
+];
+const PROPERTIES_PER_PAGE = 6;
+
+// --- UTILITY FUNCTIONS ---
+const formatPrice = (price: number): string => `R ${new Intl.NumberFormat('en-ZA').format(price)}`;
+
+// --- STYLES ---
+
+
+
+// --- REUSABLE COMPONENTS ---
+
+
+
+// --- MAIN PAGE COMPONENT ---
+export default function HomePage() {
+    // --- STATE MANAGEMENT ---
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [filters, setFilters] = useState({
+        location: '',
+        type: 'all',
+        beds: 'all',
+    });
+    const [visibleProperties, setVisibleProperties] = useState(PROPERTIES_PER_PAGE);
+    const [formStatus, setFormStatus] = useState('');
+
+    // --- DERIVED STATE & MEMOIZATION ---
+    const filteredProperties = useMemo(() => {
+        return allProperties.filter(property => {
+            const locationMatch = property.location.toLowerCase().includes(filters.location.toLowerCase());
+            const typeMatch = filters.type === 'all' || property.type === filters.type;
+            const bedsMatch = filters.beds === 'all' || property.beds >= parseInt(filters.beds, 10);
+            return locationMatch && typeMatch && bedsMatch;
+        });
+    }, [filters]);
+
+    // --- EVENT HANDLERS ---
+    const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFilters(prev => ({ ...prev, [name]: value }));
+        setVisibleProperties(PROPERTIES_PER_PAGE); // Reset pagination on filter change
+    };
+
+    const handleLoadMore = () => {
+        setVisibleProperties(prev => prev + PROPERTIES_PER_PAGE);
+    };
+    
+    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setFormStatus('Sending...');
+        // Simulate a network request
+        setTimeout(() => {
+            setFormStatus('Thank you! Your message has been sent.');
+            (e.target as HTMLFormElement).reset();
+            setTimeout(() => setFormStatus(''), 5000);
+        }, 1500);
+    };
+
+    return (
+        <div className="text-slate-800">
+            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+            <main>
+                <Hero handleFilterChange={handleFilterChange} />
+                {/*
+                <FeaturedListings
+                    filteredProperties={filteredProperties}
+                    visibleProperties={visibleProperties}
+                    handleLoadMore={handleLoadMore}
+                />
+                */}
+                                <CarouselSize />
+
+                <AboutUs />
+                <Testimonials />
+                <ContactSection handleContactSubmit={handleContactSubmit} formStatus={formStatus} />
+            </main>
+            <Footer />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
+  
 }
+
