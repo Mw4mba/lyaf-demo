@@ -35,15 +35,15 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => (
     {isMenuOpen && (
       <div className="md:hidden px-6 pt-2 pb-4 space-y-2">
         <div className='flex flex-col items-center'>
-        <a href="#home" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Home</a>
-        <a href="#listings" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Buy</a>
-        <a href="#about" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Rent</a>
-        <a href="#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Sell</a>
-        <a href="#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">About</a>
-        <a href="#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Services</a>
+        <a href="/" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Home</a>
+        <a href="/#listings" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Buy</a>
+        <a href="/#about" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Rent</a>
+        <a href="/#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Sell</a>
+        <a href="/#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">About</a>
+        <a href="/#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Services</a>
         </div>
-        <a href="#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Get in Touch</a>
-        <a href="#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Our tools <Tools size={16} className='bg-white'/></a>
+        <a href="/#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Get in Touch</a>
+        <a href="/#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Our tools <Tools size={16} className='bg-white'/></a>
       </div>
     )}
   </header>
