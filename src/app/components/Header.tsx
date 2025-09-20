@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => (
         <Image src="/image.png" alt="Urban Nest Logo" width={100} height={100} className="z-50"/>
       </a>
       <div className="hidden md:flex items-center space-x-8">
-        <NavLink href="#home" active color='black'>Home</NavLink>
+        <NavLink href="/" active color='black'>Home</NavLink>
         <NavLink href="#buy" active={false} color='black'>Buy</NavLink>
         <NavLink href="#rent" active={false} color='black'> Rent</NavLink>
         <NavLink href="#sell" active={false} color='black'>Sell</NavLink>
