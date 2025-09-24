@@ -9,9 +9,14 @@ const Hero: React.FC<HeroProps> = ({ handleFilterChange }) => {
 
   return (
     <div className='flex flex-row justify-center bg-white'>
-      <section className="h-[70vh] w-[98vw] rounded-4xl p-2 flex items-center justify-center text-white" style={{backgroundImage: "linear-gradient(rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop')", backgroundSize: "cover", backgroundPosition: "center"}}>
+      <section className="h-[80vh] w-[98vw] rounded-4xl p-2 flex items-center justify-center text-white
+      shadow-xl/50 shadow-[#101d3a]
+      " 
+      style={{backgroundImage: "linear-gradient(rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop')",
+      backgroundSize: "cover", 
+      backgroundPosition: "center"}}>
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Your Key to Modern Living</h1>
+          <h1 className="text-4xl md:text-6xl   font-extrabold mb-4 leading-tight">Your Key to Modern Living</h1>
           <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-2xl mx-auto">Find your perfect home with  the LYAF familiy.</p>
           <div className="flex justify-center gap-6 mb-4">
             <label className="flex items-center cursor-pointer">

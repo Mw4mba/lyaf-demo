@@ -22,8 +22,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ handleContactSubmit, fo
           {formStatus && <p className="mt-4 text-center text-green-600">{formStatus}</p>}
         </form>
         <div className="flex flex-col justify-center">
-          <div className="flex items-start mb-6"><div className="bg-[#ff9138] text-white p-3 rounded-full mr-4"><MapPin className="w-6 h-6" /></div><div><h4 className="font-semibold text-lg">Our Office</h4><p className="text-slate-600">123 Modern Avenue, Sandton, 2196</p></div></div>
-          <div className="flex items-start mb-6"><div className="bg-[#ff9138] text-white p-3 rounded-full mr-4"><Mail className="w-6 h-6" /></div><div><h4 className="font-semibold text-lg">Email Us</h4><p className="text-slate-600">hello@urbannest.co.za</p></div></div>
+          <div className="flex items-start mb-6"><div className="bg-[#ff9138] text-white p-3 rounded-full mr-4"><MapPin className="w-6 h-6" /></div><div><h4 className="font-semibold text-lg">Our Office</h4><p className="text-slate-600">33 Angus rd, Bedfordview 2008</p></div></div>
+          <div className="flex items-start mb-6"><div className="bg-[#ff9138] text-white p-3 rounded-full mr-4"><Mail className="w-6 h-6" /></div><div><h4 className="font-semibold text-lg">Email Us</h4><p className="text-slate-600">info@lyaf.co.za</p></div></div>
           <div className="flex items-start"><div className="bg-[#ff9138] text-white p-3 rounded-full mr-4"><Phone className="w-6 h-6" /></div><div><h4 className="font-semibold text-lg">Call Us</h4><p className="text-slate-600">(011) 555 1234</p></div></div>
         </div>
       </div>

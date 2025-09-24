@@ -9,11 +9,20 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => (
-  <header id="home" className="bg-white  sticky top-0 z-50">
-    <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+  <header id="home" className="bg-gradient-to-b from-white/30 to-transparent
+  sticky top-0 z-50">
+    <nav className="container mx-auto px-1 py-1 flex justify-between items-center
+    
+    backdrop-blur-xs
+    ">
       <a href="#" className="text-2xl font-bold text-slate-800 flex items-center">
         {/*<HomeIcon className="w-7 h-7 mr-2 text-[#1240a0]" />*/}
-        <Image src="/image.png" alt="Urban Nest Logo" width={100} height={100} className="z-50"/>
+        <Image src="/image.png" alt="home" width={100} height={100} className="z-50 
+        lg:size-12 
+        md:size-10 
+        sm:size-8 
+        max-sm:size-10
+        "/>
       </a>
       <div className="hidden md:flex items-center space-x-8">
         <NavLink href="/" active color='black'>Home</NavLink>
@@ -25,7 +34,9 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => (
 
       </div>
       <div className="hidden md:flex items-center space-x-4">
-      <a href="#contact" className="hidden md:block bg-[#1240a0] text-white px-4 py-2 rounded-lg hover:bg-[#ff9138] transition-colors">Get in Touch</a>
+      <a href="#contact" className="hidden md:block border-[#1240a0] border-2 bg-white text-[#1240a0] px-4 py-2 rounded-4xl
+       hover:bg-[#ff9138]  hover:text-white hover:border-[#ff9138]
+       transition-colors">Get in Touch</a>
       </div>
 
       <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden">
@@ -42,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => (
         <a href="/#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">About</a>
         <a href="/#contact" className="block font-medium text-slate-600 hover:text-[#1240a0] transition-colors">Services</a>
         </div>
-        <a href="/#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Get in Touch</a>
+        <a href="/#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-4xl hover:bg-emerald-600 transition-colors">Get in Touch</a>
         <a href="/#contact" className="block mt-2 bg-[#1240a0] text-white text-center px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Our tools <Tools size={16} className='bg-white'/></a>
       </div>
     )}

@@ -10,6 +10,8 @@ import AboutUs from './components/AboutUs';
 import Testimonials from './components/Testimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import HowWeHelpSection from './components/HowWeHelp';
+
 
 // --- MOCK DATA ---
 // In a real application, this would come from a CMS or API
@@ -96,7 +98,21 @@ export default function HomePage() {
                     handleLoadMore={handleLoadMore}
                 />
                 */}
-                                <CarouselSize />
+                <div 
+                    className="py-16 h-auto"
+                    style={{
+                            backgroundImage: "url('/streak.svg')",
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            overflow: 'visible'
+                            }}
+                >
+                         <HowWeHelpSection />
+                         <CarouselSize />
+
+                </div>
+ 
 
                 <AboutUs />
                 <Testimonials />
